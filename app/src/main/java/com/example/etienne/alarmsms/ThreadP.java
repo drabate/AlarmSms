@@ -1,8 +1,7 @@
-package com.example.etienne.spamtespotes;
+package com.example.etienne.alarmsms;
 
 import android.telephony.SmsManager;
 import android.util.Log;
-import android.widget.Toast;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;

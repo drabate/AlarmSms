@@ -1,4 +1,4 @@
-package com.example.etienne.spamtespotes;
+package com.example.etienne.alarmsms;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -6,20 +6,15 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 
 public class Main extends ActionBarActivity {

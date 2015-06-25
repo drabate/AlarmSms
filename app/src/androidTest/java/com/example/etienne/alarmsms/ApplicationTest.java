@@ -1,4 +1,4 @@
-package com.example.etienne.spamtespotes;
+package com.example.etienne.alarmsms;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
