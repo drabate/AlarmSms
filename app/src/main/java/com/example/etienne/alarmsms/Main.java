@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 
 public class Main extends ActionBarActivity {
@@ -31,53 +32,86 @@ public class Main extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.i("mon debug", "je suis dans le onCreate");
-
-
         setContentView(R.layout.activity_main);
-        liste = (ListView)findViewById(R.id.listView);
+
+        //liste = (ListView)findViewById(R.id.listView);
         //On ajoute un écouteur à la liste manuellement
-        liste.setOnItemClickListener(new EcouteurListe());
+        /*liste.setOnItemClickListener(new EcouteurListe());
 
         //On fait un arrayadapter pour ajouter dans la listView, en se basant sur le XML textViewAdapter
         adapter = new ArrayAdapter<String>(this, R.layout.textviewadapter);
-        liste.setAdapter(adapter);
+        liste.setAdapter(adapter);*/
+        Set<Thread> listeThread = ThreadP.getAllStackTraces().keySet();
+        Thread[] tabThread = listeThread.toArray(new Thread[listeThread.size()]);
+        Log.i("MONDEBUG", "nombre de thread actuellement : "+tabThread.length);
+
+        int nbTp = 0;
+        for(int i = 0;i<tabThread.length;i++)
+        {
+            try {
+
+                ThreadP tp = (ThreadP)tabThread[i];
+                nbTp++;
+
+            }catch(Exception ex)
+            {
+
+            }
+        }
+
+        Log.i("MONDEBUG", "nombre de threadP : "+nbTp);
     }
 
-    private void remplirListe() {
-
-        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-
-
-        tp = new ThreadP(num);
-        tp.start();
-        listeThread.add(tp);
-        //On ajoute un texte à l'arrayAdapter puis on informe la listview du changement
-        adapter.add(num);
-        adapter.notifyDataSetChanged();
-
-       /* Log.i("mon debug", "la liste est "+listeNumPref.toString());
-
-        for (Object s: listeNumPref.keySet())
-        {
-            Log.i("mon debug", "je suis dans la liste avec le num = "+s);
-            tp = new ThreadP((String)s);
-            //tp.start();
-            listeThread.add(tp);
-            //On ajoute un texte à l'arrayAdapter puis on informe la listview du changement
-            adapter.add((String)s);
-            adapter.notifyDataSetChanged();
-        }*/
+    public void ajouterAlarme(View v)
+    {
+        Intent intent = new Intent(this, Ajout.class);
+        startActivity(intent);
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        //TODO charger Thread dans un fichier de préférence???? qu'il agissent quand l'appli se ferme
-        //mais que quand l'appli s'ouvre, elle les récupères et les intègrent à la liste
-        for(ThreadP tp: listeThread)
-        {
-            tp.arret();
-        }
+    protected void onPause() {
+        Log.i("mondebug","je suis dans le onPause");
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        Log.i("mondebug", "je suis dans le onResume");
+        super.onResume();
+    }
+
+    @Override
+    protected void onRestart() {
+        Log.i("mondebug", "je suis dans le onRestart");
+        super.onRestart();
+    }
+
+    @Override
+    protected void onStart() {
+        Log.i("mondebug", "je suis dans le onStart");
+        super.onStart();
+    }
+
+    @Override
+    protected void onPostResume() {
+        Log.i("mondebug", "je suis dans le onPostResume");
+        super.onPostResume();
+    }
+
+    private void actualiser() {
+
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
+        //On ajoute le thread nouvellement crée
+        //TODO: il faut regarder si la date est celle du jour et si oui on lance le thread directement
+        /*tp = new ThreadP(num);
+        tp.start();
+        listeThread.add(tp);*/
+
+
+        //On ajoute un texte à l'arrayAdapter puis on informe la listview du changement
+        adapter.add(num);
+        adapter.notifyDataSetChanged();
     }
 
     public void stopSpam(ThreadP thread)
@@ -107,26 +141,5 @@ public class Main extends ActionBarActivity {
                 i++;
             }
         }
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onRestart();
-        String num = getIntent().getStringExtra("numero");
-        Log.i("mon debug", "dans le Restart je récupère le num " + num);
-
-            remplirListe();
-    }
-
-    public void ajoutNum (View v)
-    {
-        Intent intent = new Intent(this,Ajout.class);
-        intent.putExtra("place", liste.getCount());
-        startActivity(intent);
     }
 }

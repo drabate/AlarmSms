@@ -7,16 +7,19 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 /**
+ * one Thread by alarm
  * Created by Etienne on 17/05/2015.
  */
 public class ThreadP extends Thread {
 
     private boolean running = true;
-    private String numSpam;
+    private String messageAlert;
+    private String num;
 
-    public ThreadP(String num)
+    public ThreadP(String message,String numero)
     {
-        numSpam = num;
+        messageAlert = message;
+        num = numero;
     }
 
     public void arret()
@@ -28,10 +31,13 @@ public class ThreadP extends Thread {
 
         while(running)
         {
+            //SmsManager.getDefault().sendTextMessage("0614147499", null, "dans le thread: je fais mon tour dans le while", null, null);
+            Log.i("mondebug","dans le thread: je fais mon tour dans le while");
             //testDate();
-            envoiSMS();
+           // envoiSMS();
             try {
-                Thread.sleep(50000);
+                //rappel : 1000ms = 1s
+                Thread.sleep(5000);
             } catch (InterruptedException e) {
 
             }
@@ -54,6 +60,6 @@ public class ThreadP extends Thread {
 
     private void envoiSMS()
     {
-        SmsManager.getDefault().sendTextMessage(numSpam, null, "Test de mon appli de merde", null, null);
+        SmsManager.getDefault().sendTextMessage(num, null, "Je suis vivant :D", null, null);
     }
 }

@@ -22,7 +22,10 @@ public class Ajout extends ActionBarActivity {
         setContentView(R.layout.activity_ajout);
         num= (EditText)findViewById(R.id.textNum);
 
-        place = getIntent().getIntExtra("place",0);
+        Intent intent = new Intent(this,Main.class);
+        startActivity(intent);
+
+        //place = getIntent().getIntExtra("place",0);
     }
 
 
