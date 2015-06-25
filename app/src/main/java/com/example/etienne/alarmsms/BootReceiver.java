@@ -10,7 +10,7 @@ import android.content.Intent;
 public class BootReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-
+        //When the phone boots when start an intentService to manage the alarms
         Intent bootIntent = new Intent(context,BootIntentService.class);
         context.startService(bootIntent);
     }

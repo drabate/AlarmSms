@@ -26,7 +26,7 @@ public class Ajout extends ActionBarActivity {
     }
 
 
-    public void Spam (View v)
+    public void alerte (View v)
     {
         Log.i("mon debug", "longueur num " + num.getText().length());
         if(num.getText().length() == 10 && num.getText().charAt(0) == '0' && (num.getText().charAt(1) == '6' || num.getText().charAt(1) == '7'))
