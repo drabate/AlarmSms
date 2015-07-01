@@ -22,16 +22,17 @@ public class Ajout extends ActionBarActivity {
         setContentView(R.layout.activity_ajout);
         num= (EditText)findViewById(R.id.textNum);
 
-        Intent intent = new Intent(this,Main.class);
-        startActivity(intent);
-
-        //place = getIntent().getIntExtra("place",0);
+        /*Intent intent = new Intent(this,Main.class);
+        startActivity(intent);*/
     }
 
 
     public void alerte (View v)
     {
-        Log.i("mon debug", "longueur num " + num.getText().length());
+
+        //TODO Change this function in order to save the data in XML
+
+        /*Log.i("mon debug", "longueur num " + num.getText().length());
         if(num.getText().length() == 10 && num.getText().charAt(0) == '0' && (num.getText().charAt(1) == '6' || num.getText().charAt(1) == '7'))
         {
             SharedPreferences numPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -45,7 +46,7 @@ public class Ajout extends ActionBarActivity {
         else
         {
             Toast.makeText(getApplicationContext(),"Merci de rentrer un numéro valide",Toast.LENGTH_LONG).show();
-        }
+        }*/
 
     }
 }

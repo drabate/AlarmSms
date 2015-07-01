@@ -12,7 +12,7 @@ import android.util.Log;
 public class BootReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-        //When the phone boots when start an intentService to manage the alarms
+        //When the phone boots then start an intentService to manage the alarms
         Log.i("mondebug", "dans le bootreceiver");
         Intent bootIntent = new Intent(context,BootService.class);
         context.startService(bootIntent);

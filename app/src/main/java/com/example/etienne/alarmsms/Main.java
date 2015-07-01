@@ -13,6 +13,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -23,7 +24,6 @@ public class Main extends ActionBarActivity {
 
     private ThreadP tp;
     private ListView liste;
-    private List<ThreadP> listeThread = new LinkedList<>();
     private ArrayAdapter<String> adapter;
     String num;
 
@@ -41,25 +41,35 @@ public class Main extends ActionBarActivity {
         //On fait un arrayadapter pour ajouter dans la listView, en se basant sur le XML textViewAdapter
         adapter = new ArrayAdapter<String>(this, R.layout.textviewadapter);
         liste.setAdapter(adapter);*/
+        getThreadArray();
+    }
+
+    private List<ThreadP> getThreadArray() {
+
+        //On récupère la liste des Threads actuellement en cours de fonctionnement
         Set<Thread> listeThread = ThreadP.getAllStackTraces().keySet();
         Thread[] tabThread = listeThread.toArray(new Thread[listeThread.size()]);
-        Log.i("MONDEBUG", "nombre de thread actuellement : "+tabThread.length);
 
+        Log.i("MONDEBUG", "nombre de thread actuellement : " + tabThread.length);
+        //On parcours pour voir combien de ThreadP on a et on ajoute à la liste
+        List<ThreadP> listeThreadP = new LinkedList<>();
         int nbTp = 0;
         for(int i = 0;i<tabThread.length;i++)
         {
             try {
-
+                //On essaie de caster en ThreadP
                 ThreadP tp = (ThreadP)tabThread[i];
+                listeThreadP.add(tp);
                 nbTp++;
 
             }catch(Exception ex)
             {
-
             }
         }
 
         Log.i("MONDEBUG", "nombre de threadP : "+nbTp);
+
+        return listeThreadP;
     }
 
     public void ajouterAlarme(View v)
@@ -127,6 +137,8 @@ public class Main extends ActionBarActivity {
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             int i = 0;
             Log.i("MON DEBUG", "dans l'écouteur");
+
+            List<ThreadP> listeThread = getThreadArray();
             for(ThreadP top : listeThread)
             {
                 Log.i("MON DEBUG", "element selectionné n°" + liste.getSelectedItemPosition()+" i = "+i);
@@ -134,7 +146,7 @@ public class Main extends ActionBarActivity {
                 if(liste.getSelectedItemPosition()+1 == i)
                 {
                     //On utilise le parametre View qui correspond à la vue selectionnée
-                    Log.i("MON DEBUG", "element selectionné n°" + ((TextView) view).getText());
+                    Log.i("MON DEBUG", "element selectionné n° " + ((TextView) view).getText());
 
                     stopSpam(top);
                 }

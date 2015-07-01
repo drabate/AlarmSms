@@ -31,20 +31,21 @@ public class ThreadP extends Thread {
 
         while(running)
         {
-            //SmsManager.getDefault().sendTextMessage("0614147499", null, "dans le thread: je fais mon tour dans le while", null, null);
             Log.i("mondebug","dans le thread: je fais mon tour dans le while");
-            //testDate();
-           // envoiSMS();
+            testDate();
+
             try {
                 //rappel : 1000ms = 1s
                 Thread.sleep(5000);
             } catch (InterruptedException e) {
-
             }
         }
     }
 
     private void testDate() {
+
+
+        //TODO improve the test
 
         boolean ok = false;
         GregorianCalendar gc;
@@ -60,6 +61,6 @@ public class ThreadP extends Thread {
 
     private void envoiSMS()
     {
-        SmsManager.getDefault().sendTextMessage(num, null, "Je suis vivant :D", null, null);
+        SmsManager.getDefault().sendTextMessage(num, null, messageAlert, null, null);
     }
 }
