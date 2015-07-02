@@ -7,32 +7,4 @@
     tools:context="com.example.etienne.alarmsms.Ajout">
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Numéro à spammer :"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:id="@+id/text"/>
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="60sp"
-        android:inputType="phone"
-        android:id="@+id/textNum"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_below="@+id/text"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="60sp"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_below="@+id/textNum"
-        android:text="SPAM!"
-        android:clickable="true"
-        android:onClick="Spam" />
-
-
 </RelativeLayout>
